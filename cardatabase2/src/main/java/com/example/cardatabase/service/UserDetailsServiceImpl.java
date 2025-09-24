@@ -1,5 +1,8 @@
 package com.example.cardatabase.service;
 
+
+import com.example.cardatabase.domain.AppUser;
+import com.example.cardatabase.domain.AppUserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -3,6 +3,10 @@ package com.example.cardatabase;
 import com.example.cardatabase.domain.Car;
 import com.example.cardatabase.domain.CarRepository;
 
+import com.example.cardatabase.domain.AppUser;
+import com.example.cardatabase.domain.AppUserRepository;
+
+
 
 import com.example.cardatabase.domain.Owner;
 import com.example.cardatabase.domain.OwnerRepository;
@@ -23,10 +27,12 @@ public class CardatabaseApplication implements CommandLineRunner {
 
 	private final CarRepository repository;
 	private final OwnerRepository ownerRepository;
+	private final AppUserRepository userRepository;
 
-    public CardatabaseApplication(CarRepository repository, OwnerRepository ownerRepository) {
+    public CardatabaseApplication(CarRepository repository, OwnerRepository ownerRepository, AppUserRepository userRepository ) {
         this.repository = repository;
 		this.ownerRepository = ownerRepository;
+		this.userRepository= userRepository;
     }
 
     public static void main(String[] args) {
@@ -53,5 +59,9 @@ public class CardatabaseApplication implements CommandLineRunner {
 		for(Car car : repository.findAll()) {
 			logger.info("brand : {} , model : {}", car.getBrand(), car.getModel());
 		}
+//		AppUser 더미 데이터를 추가
+//		저 위에 보면 Owner의 경우 owner1/ owner2 만들어서 ownerRepository에 저장했다.
+		userRepository.save(new AppUser("user", "$2a$12$9hppbNjPFuDzolufqknwS.dmzIDf9aoebLl7t9q7zZwp9q6yeDBbm", "USER"));
+		userRepository.save(new AppUser("admin", "$2a$12$gMeIuC5uUjH7yw7jteRYC.VfUkWL/bZivqvVWaPXTEZytoGQzNiPu", "ADMIN"));
 	}
 }
