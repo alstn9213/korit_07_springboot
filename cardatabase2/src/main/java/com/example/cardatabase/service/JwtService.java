@@ -37,13 +37,12 @@ public class JwtService {
                 HttpHeaders.AUTHORIZATION
         );
         if(token != null) {
-            String user = Jwts.parserBuilder()
+            String user = Jwts.parser()
                     .setSigningKey(key)
                     .build()
                     .parseClaimsJws(token.replace(PREFIX, ""))
                     .getBody()
                     .getSubject();
-
             if(user != null) return user;
         }
         return null;
