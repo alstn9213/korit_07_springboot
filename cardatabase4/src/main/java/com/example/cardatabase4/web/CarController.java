@@ -31,7 +31,7 @@ public class CarController {
     }
 //    3. 차량 한 대 조회
     @GetMapping("/cars/{id}")
-    public ResponseEntity<Car> getCatById(@PathVariable Long id) {
+    public ResponseEntity<Car> getCarById(@PathVariable Long id) {
         return carService.getCarById(id)
                 .map(car -> ResponseEntity.ok().body(car)) // 차량 정보가 있으면 200 OK를 반환할 것
                 .orElse(ResponseEntity.notFound().build()); // 없으면 404 Not Found를 return 시킬 것
