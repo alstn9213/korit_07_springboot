@@ -2,7 +2,7 @@ package com.todolist.demo.config;
 
 import com.todolist.demo.authentificationFilter.AuthentificationFilter;
 import com.todolist.demo.handler.AuthEntryPoint;
-import com.todolist.demo.service.UserServiceDetailsImpl;
+import com.todolist.demo.service.UserDetailServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,11 +25,11 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    private final UserServiceDetailsImpl userDetailsService;
+    private final UserDetailServiceImpl userDetailsService;
     private final AuthentificationFilter authentificationFilter;
     private final AuthEntryPoint exceptionHandler;
 
-    public SecurityConfig(UserServiceDetailsImpl userDetailsService, AuthentificationFilter authentificationFilter, AuthEntryPoint exceptionHandler) {
+    public SecurityConfig(UserDetailServiceImpl userDetailsService, AuthentificationFilter authentificationFilter, AuthEntryPoint exceptionHandler) {
         this.userDetailsService = userDetailsService;
         this.authentificationFilter = authentificationFilter;
         this.exceptionHandler = exceptionHandler;
