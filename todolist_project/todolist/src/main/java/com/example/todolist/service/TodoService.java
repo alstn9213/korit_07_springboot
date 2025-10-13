@@ -1,5 +1,6 @@
 package com.example.todolist.service;
 
+<<<<<<< HEAD
 import com.example.todolist.domain.AppUser;
 import com.example.todolist.domain.AppUserRepository;
 import com.example.todolist.domain.Todo;
@@ -10,6 +11,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
+=======
+import com.example.todolist.domain.AppUserRepository;
+import com.example.todolist.domain.Todo;
+import com.example.todolist.domain.TodoRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+>>>>>>> fc44f2f3c3d0323182b8248119e5fcc904163275
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +34,7 @@ public class TodoService {
     }
 
 //    추가
+<<<<<<< HEAD
     public Todo addTodo(Long userId, TodoRequest todoRequest) {
         Optional<AppUser> appUser = appUserRepository.findById(userId);
         AppUser currentUser = appUser.get();
@@ -34,6 +43,13 @@ public class TodoService {
                 .appUser(currentUser).build();
         return todoRepository.save(todo);
 
+=======
+    public Todo addTodo(Todo todo) {
+//        if(appUserRepository.findByUsername()) {
+//
+//        }
+        return todoRepository.save(todo);
+>>>>>>> fc44f2f3c3d0323182b8248119e5fcc904163275
     }
 
 //    모든 목록 조회
