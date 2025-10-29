@@ -47,20 +47,21 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.csrf(AbstractHttpConfigurer::disable) // CSRF 보호 비활성화(Stateless JWT 사용)
-//                .cors(Customizer.withDefaults()) // CORS 설정 (이하의 설정 사용)
-//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .authorizeHttpRequests(auth -> auth
-////              /login 엔드포인트의 POST 요청은 모두 허용
-//                                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-//                                .requestMatchers("/swagger-ui/**", "/api-docs/**").permitAll()
-//                                .anyRequest().authenticated())
-//                .exceptionHandling(ex -> ex.authenticationEntryPoint(authEntryPoint)) // 인증 실패시 처리
-//                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 필터 추가
-        http.csrf(csrf -> csrf.disable())
-                .cors(Customizer.withDefaults())
-                .authorizeHttpRequests(authorizeHttpRequest ->
-                        authorizeHttpRequest.anyRequest().permitAll());
+        http.csrf(AbstractHttpConfigurer::disable) // CSRF 보호 비활성화(Stateless JWT 사용)
+                .cors(Customizer.withDefaults()) // CORS 설정 (이하의 설정 사용)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authorizeHttpRequests(auth -> auth
+//              /login 엔드포인트의 POST 요청은 모두 허용
+                                .requestMatchers(HttpMethod.POST, "/login").permitAll()
+                                .requestMatchers("/swagger-ui/index.html", "/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
+                                .anyRequest().authenticated())
+                .oauth2Login(oauth2 -> oauth2.successHandler(customOAuth2SuccessHandler))
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(authEntryPoint)) // 인증 실패시 처리
+                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 필터 추가
+//        http.csrf(csrf -> csrf.disable())
+//                .cors(Customizer.withDefaults())
+//                .authorizeHttpRequests(authorizeHttpRequest ->
+//                        authorizeHttpRequest.anyRequest().permitAll());
         return http.build();
 
     }
