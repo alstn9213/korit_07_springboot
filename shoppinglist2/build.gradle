@@ -47,13 +47,11 @@ dependencies {
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-<<<<<<< HEAD
 
 //	google OAuth2 관련 의존성
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client-resource-server'
-=======
->>>>>>> eed4358683e8557de6ba40a4777b3659070b9313
+
 }
 
 tasks.named('test') {

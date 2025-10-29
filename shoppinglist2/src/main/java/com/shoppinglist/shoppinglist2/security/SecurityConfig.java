@@ -28,10 +28,7 @@ public class SecurityConfig {
     private final UserDetailsServiceImpl userDetailsService;
     private final JwtService jwtService;
     private final AuthEntryPoint authEntryPoint;
-<<<<<<< HEAD
     private final CustomOAuth2SuccessHandler customOAuth2SuccessHandler;
-=======
->>>>>>> eed4358683e8557de6ba40a4777b3659070b9313
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -50,24 +47,6 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
-        http.csrf(AbstractHttpConfigurer::disable) // CSRF 보호 비활성화(Stateless JWT 사용)
-                .cors(Customizer.withDefaults()) // CORS 설정 (이하의 설정 사용)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth
-//              /login 엔드포인트의 POST 요청은 모두 허용
-                                .requestMatchers(HttpMethod.POST, "/login").permitAll()
-                                .requestMatchers("/swagger-ui/index.html", "/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll()
-                                .requestMatchers("/oauth2/**", "/login/oauth2/code/*").permitAll()
-                                .anyRequest().authenticated())
-                .oauth2Login(oauth2 -> oauth2.successHandler(customOAuth2SuccessHandler))
-                .exceptionHandling(ex -> ex.authenticationEntryPoint(authEntryPoint)) // 인증 실패시 처리
-                .addFilterBefore(authenticationFilter(), UsernamePasswordAuthenticationFilter.class); // JWT 필터 추가
-//        http.csrf(csrf -> csrf.disable())
-//                .cors(Customizer.withDefaults())
-//                .authorizeHttpRequests(authorizeHttpRequest ->
-//                        authorizeHttpRequest.anyRequest().permitAll());
-=======
 //        http.csrf(AbstractHttpConfigurer::disable) // CSRF 보호 비활성화(Stateless JWT 사용)
 //                .cors(Customizer.withDefaults()) // CORS 설정 (이하의 설정 사용)
 //                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -82,7 +61,6 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorizeHttpRequest ->
                         authorizeHttpRequest.anyRequest().permitAll());
->>>>>>> eed4358683e8557de6ba40a4777b3659070b9313
         return http.build();
 
     }

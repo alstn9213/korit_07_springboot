@@ -8,10 +8,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fc44f2f3c3d0323182b8248119e5fcc904163275
 @SpringBootApplication
 public class TodolistApplication implements CommandLineRunner {
 	private final TodoRepository todoRepository;
